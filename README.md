@@ -26,7 +26,7 @@
   ```
   npm run dev
   ```
-6. 若在終端機看到下方訊息代表順利運行，於瀏覽器中輸入該網址(http://localhost:3000)即可開始使用本網站
+6. 若在終端機看到下方訊息代表順利運行，於瀏覽器中輸入該網址([http://localhost:3000](http://localhost:3000))即可開始使用本網站
   ```
   Listening on http://localhost:3000
   ```
