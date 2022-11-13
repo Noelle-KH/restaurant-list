@@ -1,10 +1,24 @@
 // 載入Express、樣板引擎、外部資源、設定路由、啟動伺服器
 const express = require('express')
+const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
 
-const restaurants = require('./restaurant.json')
-const exphbs = require('express-handlebars')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
