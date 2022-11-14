@@ -22,7 +22,16 @@
   ```
   npm install
   ```
-5. 啟動專案，請繼續輸入
+
+5. 新增```.env```檔案，並設置資料庫連線字串
+  ```
+  MONGODB_URL=mongodb+srv://<account>:<password>@cluster0.<xxxxx>.mongodb.net/<table>?retryWrites=true&w=majority
+  ```
+6. 啟動專案前，請先建立種子資料，如在終端機中成功看到done，即表示種子資料建立成功
+  ```
+  npm run seed
+  ```
+7. 欲啟動專案，請繼續輸入
   ```
   npm run dev
   ```
@@ -37,5 +46,7 @@
 * Node.js 16.17.1
 * Express 4.16.4
 * Express-Handlebars 3.0.0
+* Mongoose 5.13
+* dotenv 16.0.3
 * Bootstrap 5.1.3
 * Font Awesome 6.2.0
