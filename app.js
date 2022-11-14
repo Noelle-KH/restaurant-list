@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
 const Restaurant = require('./models/restaurant-model')
+const bodyParser = require('body-parser')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -24,11 +25,25 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
+})
+
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const [name, category, image, location, phone, google_map, rating, description] = [req.body.name, req.body.category, req.body.image, req.body.location, req.body.phone, req.body.google_map, Number(req.body.rating), req.body.description]
+  return Restaurant.create({
+    name, category, image, location, phone, google_map, rating, description
+  })
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
