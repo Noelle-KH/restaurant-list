@@ -1,4 +1,4 @@
-// 載入Express、樣板引擎、外部資源、設定路由、啟動伺服器
+// 載入Express、樣板引擎、資料庫及Model、body-parser
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
@@ -7,6 +7,7 @@ const port = 3000
 const Restaurant = require('./models/restaurant-model')
 const bodyParser = require('body-parser')
 
+// 與資料庫連線
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -22,11 +23,13 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+// 設定樣板引擎、靜態檔案及body-parser
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// 設置路由
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
@@ -34,6 +37,7 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 新增餐廳資料
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
@@ -47,6 +51,7 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 瀏覽餐廳資料
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -55,6 +60,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 修改餐廳資料
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -82,6 +88,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 刪除餐廳資料
 app.get('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -90,6 +97,7 @@ app.get('/restaurants/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 搜尋餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
   Restaurant.find()
@@ -107,6 +115,7 @@ app.get('/search', (req, res) => {
     })
 })
 
+// 啟動與監聽伺服器
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`)
 })
