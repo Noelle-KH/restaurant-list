@@ -1,0 +1,121 @@
+<div class="container text-center pt-3">
+  <h3 class="mb-5">新增餐廳資料</h3>
+  <form
+    action="/restaurants/{{restaurant._id}}/edit"
+    method="POST"
+    class="row g-3"
+  >
+    <div class="col-md-4 col-12">
+      <label for="name" class="form-label">餐廳名稱</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        placeholder="請輸入餐廳名稱"
+        value="{{restaurant.name}}"
+        required
+      />
+    </div>
+    <div class="col-md-4 col-12">
+      <label for="validationDefault02" class="form-label">餐廳分類</label>
+      <input
+        list="categories"
+        class="form-control"
+        name="category"
+        id="validationDefault02"
+        placeholder="請選擇餐廳分類，如選單沒有請輸入新增"
+        value="{{restaurant.category}}"
+        required
+      />
+      <datalist id="categories">
+        <option value="義式餐廳">義式餐廳</option>
+        <option value="中東料理">中東料理</option>
+        <option value="日本料理">日本料理</option>
+        <option value="美式">美式</option>
+        <option value="酒吧">酒吧</option>
+        <option value="咖啡">咖啡</option>
+      </datalist>
+    </div>
+    <div class="col-md-4 col-12">
+      <label for="image" class="form-label">餐廳圖片</label>
+      <div class="input-group">
+        <input
+          type="url"
+          class="form-control"
+          name="image"
+          id="image"
+          placeholder="請輸入圖片網址"
+          value="{{restaurant.image}}"
+          required
+        />
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <label for="location" class="form-label">餐廳地址</label>
+      <input
+        type="text"
+        class="form-control"
+        name="location"
+        id="location"
+        placeholder="請輸入餐廳地址"
+        value="{{restaurant.location}}"
+        required
+      />
+    </div>
+    <div class="col-md-3 col-12">
+      <label for="phone" class="form-label">餐廳電話</label>
+      <input
+        type="text"
+        class="form-control"
+        name="phone"
+        id="phone"
+        placeholder="請輸入餐廳電話"
+        value="{{restaurant.phone}}"
+        required
+      />
+    </div>
+    <div class="col-md-3 col-12">
+      <label for="google_map" class="form-label">餐廳地圖連結</label>
+      <input
+        type="url"
+        class="form-control"
+        name="google_map"
+        id="google_map"
+        placeholder="請輸入餐廳地圖連結"
+        value="{{restaurant.google_map}}"
+        required
+      />
+    </div>
+    <div class="col-md-2 col-12">
+      <label for="rating" class="form-label">餐廳評分</label>
+      <input
+        type="number"
+        class="form-control"
+        name="rating"
+        id="rating"
+        min="1"
+        max="5"
+        step="0.1"
+        placeholder="請輸入餐廳評分"
+        value="{{restaurant.rating}}"
+        required
+      />
+    </div>
+    <div class="col-12">
+      <label for="description" class="form-label">餐廳描述</label>
+      <textarea
+        class="form-control"
+        name="description"
+        id="description"
+        rows="3"
+        placeholder="請輸入餐廳描述內容"
+      >{{restaurant.description}}</textarea>
+    </div>
+    <div class="col-12">
+      <a href="/" class="btn btn-secondary">取消</a>
+      <button class="btn btn-primary" type="submit">修改</button>
+    </div>
+  </form>
+
+</div>
