@@ -26,15 +26,15 @@
 </div>
 
 {{#unless keyword}}
-<div class="text-center mt-5">
-  <a
-    href="/restaurants/new"
-    class="text-decoration-none border border-2 border-warning text-white bg-dark p-3 rounded-pill"
-  >
-    <i class="fa-solid fa-plus"></i>
-    新增餐廳
-  </a>
-</div>
+  <div class="text-center mt-5">
+    <a
+      href="/restaurants/new"
+      class="text-decoration-none border border-2 border-warning text-white bg-dark p-3 rounded-pill"
+    >
+      <i class="fa-solid fa-plus"></i>
+      新增餐廳
+    </a>
+  </div>
 {{/unless}}
 
 <!-- restaurant list -->
@@ -71,7 +71,10 @@
                       <i class="fa-solid fa-pen-to-square text-primary"></i></a>
                     <a href="/restaurants/{{this._id}}" class="mx-2">
                       <i class="fa-solid fa-circle-info text-info"></i></a>
-                    <a href="/restaurants/{{this._id}}/delete">
+                    <a
+                      href="/restaurants/{{this._id}}/delete"
+                      onclick="return confirm(`確定要刪除 {{this.name}} 嗎?`)"
+                    >
                       <i class="fa-solid fa-trash text-dark"></i></a>
                   </span>
                 </div>
