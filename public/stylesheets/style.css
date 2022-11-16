@@ -50,6 +50,11 @@ header {
   background-color: transparent;
 }
 
+.form-select {
+  background-color: #fce2cf;
+  border: 1px solid #9b4b4b;
+}
+
 .form-control:focus {
   box-shadow: none;
   border-color: #ced4da;
