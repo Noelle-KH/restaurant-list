@@ -2,11 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant-model')
 
+// 新增餐廳資料
 router.get('/new', (req, res) => {
   res.render('new')
 })
 
-router.post('', (req, res) => {
+router.post('/', (req, res) => {
   const { name, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.create({
     name, category, image, location, phone, google_map, rating, description
@@ -48,7 +49,7 @@ router.put('/:id', (req, res) => {
       restaurant.description = description
       return restaurant.save()
     })
-    .then(() => res.redirect('/'))
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 
