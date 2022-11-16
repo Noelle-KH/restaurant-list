@@ -2,7 +2,7 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
+      <form class="mb-0" action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input
@@ -20,9 +20,28 @@
             </button>
           </div>
         </div>
+        {{#if keyword}}
+          <div class="d-flex justify-content-end mt-3">
+            <div>
+              <select
+                class="form-select form-select-sm"
+                aria-label="select sort"
+                role="button"
+                name="sort"
+                onchange="this.form.submit()"
+              >
+                <option {{#if sortSelected.default}} selected {{/if}} value="default">Sort by</option>
+                <option {{#if sortSelected.AtoZ}} selected {{/if}} value="AtoZ">A → Z</option>
+                <option {{#if sortSelected.ZtoA}} selected {{/if}} value="ZtoA">Z → A</option>
+                <option {{#if sortSelected.category}} selected {{/if}} value="category">類別</option>
+                <option {{#if sortSelected.location}} selected {{/if}} value="location">地區</option>
+              </select>
+            </div>
+          </div>
+        {{/if}}
       </form>
       {{#unless keyword}}
-        <form class="d-flex justify-content-end m-0" action="/" method="GET">
+        <form class="d-flex justify-content-end mt-3 mb-0" action="/" method="GET">
           <div>
             <select
               class="form-select form-select-sm"
