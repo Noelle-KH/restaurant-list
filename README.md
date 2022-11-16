@@ -47,6 +47,7 @@
 * Express 4.16.4
 * Express-Handlebars 3.0.0
 * Mongoose 5.13
+* method-override 3.0.0
 * dotenv 16.0.3
 * Bootstrap 5.1.3
 * Font Awesome 6.2.0
