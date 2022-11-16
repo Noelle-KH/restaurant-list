@@ -2,10 +2,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
-const app = express()
-const port = 3000
-const Restaurant = require('./models/restaurant-model')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
+const Restaurant = require('./models/restaurant-model')
+const port = 3000
+const app = express()
 
 // 與資料庫連線
 if (process.env.NODE_ENV !== 'production') {
@@ -28,6 +30,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // 設置路由
 app.get('/', (req, res) => {
@@ -80,7 +83,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const { name, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.findById(id)
@@ -100,7 +103,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // 刪除餐廳資料
-app.get('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())

@@ -78,11 +78,14 @@
                       <i class="fa-solid fa-pen-to-square text-primary"></i></a>
                     <a href="/restaurants/{{this._id}}" class="mx-2">
                       <i class="fa-solid fa-circle-info text-info"></i></a>
-                    <a
-                      href="/restaurants/{{this._id}}/delete"
-                      onclick="return confirm(`確定要刪除 {{this.name}} 嗎?`)"
-                    >
-                      <i class="fa-solid fa-trash text-dark"></i></a>
+                    <form class="d-inline m-0" action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
+                      <button 
+                        class="p-0 border-0"
+                        type="submit"
+                        onclick="return confirm(`確定要刪除 {{this.name}} 嗎?`)"
+                      >
+                        <i class="fa-solid fa-trash text-dark"></i></button>
+                    </form>
                   </span>
                 </div>
 
