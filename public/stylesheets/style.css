@@ -74,7 +74,8 @@ header {
   white-space: nowrap;
 }
 
-.restaurant-category {
+.restaurant-category,
+.restaurant-location {
   color: #666666;
   font-size: 0.8rem;
 }
