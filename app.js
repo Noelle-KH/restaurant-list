@@ -31,9 +31,20 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // 設置路由
 app.get('/', (req, res) => {
+  const sort = req.query.sort || 'default'
+  const sortBy = {
+    'default': { _id: 'asc' },
+    'AtoZ': { name: 'asc' },
+    'ZtoA': { name: 'desc' },
+    'category': { category: 'asc' },
+    'location': { location: 'asc' }
+  }
+  const sortSelected = { [sort]: true }
+
   Restaurant.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants }))
+    .sort(sortBy[sort])
+    .then(restaurants => res.render('index', { restaurants, sortSelected }))
     .catch(error => console.log(error))
 })
 
