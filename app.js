@@ -12,7 +12,14 @@ const routes = require('./routes')
 require('./config/mongoose')
 
 // 設定樣板引擎、靜態檔案及body-parser、路由
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  helpers: {
+    selected: (sortSelected) => {
+      if (sortSelected) return "selected"
+    }
+  }
+}))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))

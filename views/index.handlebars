@@ -30,18 +30,29 @@
                 name="sort"
                 onchange="this.form.submit()"
               >
-                <option {{#if sortSelected.default}} selected {{/if}} value="default">Sort by</option>
-                <option {{#if sortSelected.AtoZ}} selected {{/if}} value="AtoZ">A → Z</option>
-                <option {{#if sortSelected.ZtoA}} selected {{/if}} value="ZtoA">Z → A</option>
-                <option {{#if sortSelected.category}} selected {{/if}} value="category">類別</option>
-                <option {{#if sortSelected.location}} selected {{/if}} value="location">地區</option>
+                <option {{selected sortSelected.default}} value="default">Sort
+                  by</option>
+                <option {{selected sortSelected.AtoZ}} value="AtoZ">A → Z</option>
+                <option {{selected sortSelected.ZtoA}} value="ZtoA">Z → A</option>
+                <option
+                  {{selected sortSelected.category}}
+                  value="category"
+                >類別</option>
+                <option
+                  {{selected sortSelected.location}}
+                  value="location"
+                >地區</option>
               </select>
             </div>
           </div>
         {{/if}}
       </form>
       {{#unless keyword}}
-        <form class="d-flex justify-content-end mt-3 mb-0" action="/" method="GET">
+        <form
+          class="d-flex justify-content-end mt-3 mb-0"
+          action="/"
+          method="GET"
+        >
           <div>
             <select
               class="form-select form-select-sm"
@@ -50,11 +61,17 @@
               name="sort"
               onchange="this.form.submit()"
             >
-              <option {{#if sortSelected.default}} selected {{/if}} value="default">Sort by</option>
-              <option {{#if sortSelected.AtoZ}} selected {{/if}} value="AtoZ">A → Z</option>
-              <option {{#if sortSelected.ZtoA}} selected {{/if}} value="ZtoA">Z → A</option>
-              <option {{#if sortSelected.category}} selected {{/if}} value="category">類別</option>
-              <option {{#if sortSelected.location}} selected {{/if}} value="location">地區</option>
+              <option {{selected sortSelected.default}} value="default">Sort by</option>
+              <option {{selected sortSelected.AtoZ}} value="AtoZ">A → Z</option>
+              <option {{selected sortSelected.ZtoA}} value="ZtoA">Z → A</option>
+              <option
+                {{selected sortSelected.category}}
+                value="category"
+              >類別</option>
+              <option
+                {{selected sortSelected.location}}
+                value="location"
+              >地區</option>
             </select>
           </div>
         </form>
@@ -101,8 +118,12 @@
                       <i class="fa-solid fa-pen-to-square text-primary"></i></a>
                     <a href="/restaurants/{{this._id}}" class="mx-2">
                       <i class="fa-solid fa-circle-info text-info"></i></a>
-                    <form class="d-inline m-0" action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
-                      <button 
+                    <form
+                      class="d-inline m-0"
+                      action="/restaurants/{{this._id}}?_method=DELETE"
+                      method="POST"
+                    >
+                      <button
                         class="p-0 border-0"
                         type="submit"
                         onclick="return confirm(`確定要刪除 {{this.name}} 嗎?`)"
