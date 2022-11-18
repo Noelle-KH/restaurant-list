@@ -74,10 +74,14 @@ header {
   white-space: nowrap;
 }
 
-.restaurant-category,
-.restaurant-location {
+.restaurant-category {
   color: #666666;
   font-size: 0.8rem;
+}
+
+.restaurant-location {
+  color: #666666;
+  font-size: 0.7rem;
 }
 
 .restaurant-show-title {
