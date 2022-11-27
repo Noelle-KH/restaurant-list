@@ -37,11 +37,11 @@
   ```
   npm run dev
   ```
-6. 若在終端機看到下方訊息代表順利運行，於瀏覽器中輸入該網址([http://localhost:3000](http://localhost:3000))即可開始使用本網站
+8. 若在終端機看到下方訊息代表順利運行，於瀏覽器中輸入該網址([http://localhost:3000](http://localhost:3000))即可開始使用本網站
   ```
   Listening on http://localhost:3000
   ```
-7. 如需暫停使用，請於終端機內按下ctrl + c，即可結束
+9. 如需暫停使用，請於終端機內按下ctrl + c，即可結束
 
 
 ## 開發工具
