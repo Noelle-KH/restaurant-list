@@ -1,7 +1,7 @@
 # 我的餐廳清單
 提供餐廳清單，可以新增、瀏覽、修改及刪除餐廳、查看餐廳資訊、搜尋餐廳、排序餐廳
 
-<img src='resource/preview.png'>
+<img src='./public/images/preview.png'>
 
 ## 功能
 * 可以瀏覽所有餐廳
