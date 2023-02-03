@@ -3,6 +3,7 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant-model')
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const keyword = (req.query.keyword) ? req.query.keyword.trim() : ''
   const sort = req.query.sort || 'default'
   const sortBy = {
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
   }
   const sortSelected = { [sort]: true }
 
-  Restaurant.find()
+  return Restaurant.find({ userId })
     .lean()
     .sort(sortBy[sort])
     .then(restaurants => {
