@@ -23,6 +23,11 @@
             />
             我的餐廳清單
           </a>
+          {{#if isAuthenticated}}
+            <a href="/users/logout" class="btn btn-outline-secondary">Logout</a>
+          {{else}}
+            <a href="/users/login" class="btn btn-outline-info">Login</a>
+          {{/if}}
         </div>
       </nav>
       <div class="banner"></div>
