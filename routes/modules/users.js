@@ -1,5 +1,6 @@
 const express = require('express')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 const router = express.Router()
 const User = require('../../models/user-model')
 
@@ -34,7 +35,7 @@ router.post('/register', (req, res) => {
     .then(user => {
       if (user) {
       }
-      return User.create({ name, email, password })
+      return User.create({ name, email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) })
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
     })
