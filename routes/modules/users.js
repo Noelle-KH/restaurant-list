@@ -39,7 +39,7 @@ router.post('/register', (req, res) => {
         })
       }
       return User.create({ name, email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) })
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/users/login'))
     })
     .catch(error => console.log(error))
 })
