@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const router = express.Router()
 const User = require('../../models/user-model')
 
+// 登入
 router.get('/login', (req, res) => {
   res.render('login')
 })
@@ -14,6 +15,7 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true
 }))
 
+// 註冊
 router.get('/register', (req, res) => {
   res.render('register')
 })
@@ -44,6 +46,7 @@ router.post('/register', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 登出
 router.get('/logout', (req, res) => {
   req.logout()
   req.flash('success_message', '您已成功登出')

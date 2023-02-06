@@ -1,14 +1,18 @@
 # 我的餐廳清單
-提供餐廳清單，可以新增、瀏覽、修改及刪除餐廳、查看餐廳資訊、搜尋餐廳、排序餐廳
+登入或註冊會員使用專屬的新增、瀏覽、修改及刪除餐廳，並且可以查看餐廳資訊、搜尋和排序餐廳。
 
 <img src='./public/images/preview.png'>
 
 ## 功能
-* 可以瀏覽所有餐廳
-* 點擊餐廳可取得其詳細資訊
-* 輸入餐廳名稱或分類的關鍵字來搜尋餐廳
-* 能夠新增、修改及刪除餐廳
-* 可以針對餐廳的名稱(英文字母)、分類及地區進行排序
+* 使用者可以註冊會員並重新登入使用餐廳清單
+* 使用者可以登入會員使用餐廳清單
+* 使用者可以新增餐廳資訊
+* 使用者可以瀏覽自己新增的所有餐廳資訊
+* 使用者可以點擊餐廳以取得該餐廳詳細資訊
+* 使用者可以修改餐廳資訊
+* 使用者可以刪除餐廳資訊
+* 使用者可以藉由輸入餐廳名稱或分類的關鍵字來搜尋餐廳
+* 使用者可以針對餐廳名稱(英文字母)、分類擊地區進行排序
 
 ## 開始使用
 1. 請先確認已安裝 node.js 與 npm (版本請見下方開發工具)
@@ -25,10 +29,8 @@
   npm install
   ```
 
-5. 新增```.env```檔案，並設置資料庫連線字串
-  ```
-  MONGODB_URL=mongodb+srv://<account>:<password>@cluster0.<xxxxx>.mongodb.net/<table>?retryWrites=true&w=majority
-  ```
+5. 新增```.env```檔案，並請根據```.env.example```檔案內資訊設置環境變數
+
 6. 啟動專案前，請先建立種子資料，如在終端機中成功看到done，即表示種子資料建立成功
   ```
   npm run seed
@@ -45,11 +47,18 @@
 
 
 ## 開發工具
-* Node.js 16.17.1
-* Express 4.16.4
-* Express-Handlebars 3.0.0
-* Mongoose 5.13
+* node.js 14.16.0
+* express 4.16.4
+* express-handlebars 3.0.0
+* express-session 1.17.1
+* mongoose 5.13
 * method-override 3.0.0
 * dotenv 16.0.3
-* Bootstrap 5.1.3
-* Font Awesome 6.2.0
+* bcrypt 2.4.3
+* connect-flash 0.1.1
+* passport 0.4.1
+* passport-local 1.0.0
+* passport-facebook 3.0.0
+* passport-google-oauth2 0.2.0
+* bootstrap 5.1.3
+* font awesome 6.2.0

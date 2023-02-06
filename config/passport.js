@@ -6,9 +6,11 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/user-model')
 
 module.exports = app => {
+  // 初始化
   app.use(passport.initialize())
   app.use(passport.session())
 
+  // Local 策略
   passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
 
     return User.findOne({ email })
@@ -23,6 +25,7 @@ module.exports = app => {
       .catch(error => done(error))
   }))
 
+  // Facebook 策略
   passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
@@ -30,12 +33,14 @@ module.exports = app => {
     profileFields: ['email', 'displayName']
   }, verifyCallback))
 
+  // Google 策略
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK
   }, verifyCallback))
 
+  // 序列化與反序列化
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
@@ -47,7 +52,7 @@ module.exports = app => {
   })
 }
 
-
+// Facebook 和 Google 的 callback
 function verifyCallback(accessToken, refreshToken, profile, done) {
   const { name, email } = profile._json
   return User.findOne({ email })
