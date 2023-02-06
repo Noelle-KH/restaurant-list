@@ -1,11 +1,11 @@
 <div class="row mx-auto mt-5">
   <div class="col-md-6 mx-auto mb-5">
     <div class="card card-body">
-      <h1 class="text-center mt-3">Register</h1>
+      <h1 class="text-center mt-3">註冊會員</h1>
       {{> message}}
       <form action="/users/register" method="POST">
         <div class="mb-3">
-          <label for="name" class="mb-2">Name</label>
+          <label for="name" class="mb-2">會員名稱</label>
           <input
             type="text"
             id="name"
@@ -27,7 +27,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="password" class="mb-2">Password</label>
+          <label for="password" class="mb-2">密碼</label>
           <input
             type="password"
             id="password"
@@ -38,7 +38,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="confirmPassword" class="mb-2">Confirm Password</label>
+          <label for="confirmPassword" class="mb-2">再次輸入密碼</label>
           <input
             type="password"
             id="confirmPassword"
@@ -51,13 +51,13 @@
         <button
           type="submit"
           class="btn btn-primary btn-block"
-        >Register</button>
-        <a href="/auth/facebook" class="btn btn-info btn-block">Facebook Login</a>
-        <a href="/auth/google" class="btn btn-danger btn-block">Google Login</a>
+        >註冊</button>
+        <a href="/auth/facebook" class="btn btn-info btn-block">使用<strong> Facebook </strong>登入</a>
+        <a href="/auth/google" class="btn btn-danger btn-block">使用<strong> Google </strong>登入</a>
       </form>
       <p class="lead mt-4">
-        Have An Account?
-        <a href="/users/login">Login</a>
+        已經有會員帳號嗎?
+        <a href="/users/login">登入</a>
       </p>
     </div>
   </div>
