@@ -23,11 +23,11 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
   const errors = []
-  if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: '所有欄位都是必填' })
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: 'Email、密碼與再次輸入密碼欄位都是必填' })
   }
   if (password !== confirmPassword) {
-    errors.push({ message: '密碼與確認密碼不相符' })
+    errors.push({ message: '密碼與再次輸入密碼不相符' })
   }
   if (errors.length) {
     return res.render('register', { name, email, password, confirmPassword, errors })
@@ -35,13 +35,21 @@ router.post('/register', (req, res) => {
   return User.findOne({ email })
     .then(user => {
       if (user) {
-        errors.push({ message: '這個 Email 已註冊過了' })
+        errors.push({ message: 'Email 顯示已是會員，請使用登入功能' })
         return res.render('register', {
           name, email, password, confirmPassword, errors
         })
       }
-      return User.create({ name, email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) })
-        .then(() => res.redirect('/users/login'))
+      return User.create({
+        name: name || email.slice(0, email.indexOf('@')),
+        email,
+        password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+      })
+        .then(() => {
+          req.flash('success_message', '註冊完成，請重新登入會員')
+          return res.redirect('/users/login')
+        })
+        .catch(error => console.log(error))
     })
     .catch(error => console.log(error))
 })
