@@ -4,12 +4,12 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
 
+require('./config/mongoose')
 const port = process.env.PORT || 3000
 const app = express()
 
 const routes = require('./routes')
 const usePassport = require('./config/passport')
-require('./config/mongoose')
 
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
