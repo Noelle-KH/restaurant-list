@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
       if (!keyword) {
         res.render('index', { restaurants, sortSelected })
       } else if (!searchResult.length) {
-        res.render('index', { keyword, sortSelected })
+        res.render('not-found', { keyword, sortSelected })
       } else {
         res.render('index', { restaurants: searchResult, keyword, sortSelected })
       }
