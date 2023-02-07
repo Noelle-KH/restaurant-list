@@ -21,6 +21,7 @@ module.exports = app => {
             if (!isMatch) return done(null, false, req.flash('warning_message', '信箱或密碼錯誤'))
             return done(null, user)
           })
+          .catch(error => done(error))
       })
       .catch(error => done(error))
   }))
@@ -61,6 +62,7 @@ function verifyCallback(accessToken, refreshToken, profile, done) {
       const randomPassword = Math.random().toString(36).slice(-8)
       return User.create({ name, email, password: bcrypt.hashSync(randomPassword, bcrypt.genSaltSync(10)) })
         .then(user => done(null, user))
+        .catch(error => done(error))
     })
     .catch(error => done(error))
 }
